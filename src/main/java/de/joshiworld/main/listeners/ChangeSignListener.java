@@ -337,6 +337,8 @@ public class ChangeSignListener {
 
                                 //Sponge.getCommandManager().process(p.getCommandSource().get(), "money");
                                 //</editor-fold>
+                                
+                                e.setCancelled(true);
                             }
                         }
                         //</editor-fold>
@@ -432,6 +434,8 @@ public class ChangeSignListener {
                                 //</editor-fold>
                                 
                                 Score.setScore(p);
+                                
+                                e.setCancelled(true);
                             }
                         }
                         //</editor-fold>
@@ -456,6 +460,8 @@ public class ChangeSignListener {
                                 
                                 Score.setScore(p);
                             }
+                            
+                            e.setCancelled(true);
                         }
                         //</editor-fold>
 
@@ -494,6 +500,8 @@ public class ChangeSignListener {
                             } else {
                                 p.sendMessage(Text.of(Ozone.getPrefix() + " §cDiesen Artikel kannst du hier nicht verkaufen"));
                             }
+                            
+                            e.setCancelled(true);
                         }
                         //</editor-fold>
                     }
