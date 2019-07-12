@@ -33,6 +33,7 @@ public class ListenersInit {
         getEventManager().registerListeners(Ozone.getPlugin(), new WarpCancelListener());
         getEventManager().registerListeners(Ozone.getPlugin(), new PlayerCommandListener());
         getEventManager().registerListeners(Ozone.getPlugin(), new ChangeWorldListener());
+        getEventManager().registerListeners(Ozone.getPlugin(), new FluidBreakListener());
     }
     
 }

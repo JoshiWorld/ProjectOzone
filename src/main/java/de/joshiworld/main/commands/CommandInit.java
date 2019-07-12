@@ -2,6 +2,7 @@ package de.joshiworld.main.commands;
 
 import de.joshiworld.main.Ozone;
 import de.joshiworld.main.commands.config.ConfigCommand;
+import de.joshiworld.main.commands.hilfe.HilfeCommand;
 import de.joshiworld.main.commands.home.DelhomeCommand;
 import de.joshiworld.main.commands.home.HomeCommand;
 import de.joshiworld.main.commands.home.HomesCommand;
@@ -15,6 +16,7 @@ import de.joshiworld.main.commands.rank.RankCommand;
 import de.joshiworld.main.commands.score.ScoreCommand;
 import de.joshiworld.main.commands.shopsign.ShopSignCommand;
 import de.joshiworld.main.commands.spectate.SpectateCommand;
+import de.joshiworld.main.commands.support.SupportCommand;
 import de.joshiworld.main.commands.tpw.TpwCommand;
 import de.joshiworld.main.commands.update.UpdateCommand;
 import de.joshiworld.main.commands.warp.BodenshopCommand;
@@ -74,6 +76,8 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), HomesCommand.build(), "homes");
         getCommandManager().register(Ozone.getPlugin(), RankCommand.build(), "rank");
         getCommandManager().register(Ozone.getPlugin(), SpectateCommand.build(), "spectate", "spec");
+        getCommandManager().register(Ozone.getPlugin(), HilfeCommand.build(), "hilfe");
+        getCommandManager().register(Ozone.getPlugin(), SupportCommand.build(), "support", "supp");
     }
     
 }
