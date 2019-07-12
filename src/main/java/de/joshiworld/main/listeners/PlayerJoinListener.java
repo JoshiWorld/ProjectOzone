@@ -50,9 +50,27 @@ public class PlayerJoinListener {
                 Players.cfgNode.getNode("playtime", "tage").setValue(0);
                 Players.cfgNode.getNode("playtime", "hours").setValue(0);
                 Players.save();
+                
+                if(Sponge.getServer().getWorld("Bodenwelt").isPresent()) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_BODENWELT");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add Bodenwelt " + p.getName().toUpperCase() + "_BODENWELT");
+                }
+                
+                if(Sponge.getServer().getWorld("Skyblock").isPresent()) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_SKYBLOCK");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add Skyblock " + p.getName().toUpperCase() + "_SKYBLOCK");
+                }
+                
+                if(Sponge.getServer().getWorld("DIM-1").isPresent()) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_DIM-1");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add DIM-1 " + p.getName().toUpperCase() + "_DIM-1");
+                }
             }
             
-            
+            if(Sponge.getServer().getWorld("world").isPresent()) {
+                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+            }
             
             if(Sponge.getServer().getOnlinePlayers().size() < 2) {
                 Task.builder().execute(new Runnable() {

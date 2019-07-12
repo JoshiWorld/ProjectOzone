@@ -1,10 +1,17 @@
 package de.joshiworld.main.listeners;
 
+import de.joshiworld.main.Ozone;
 import de.joshiworld.main.config.Score;
+import java.util.concurrent.TimeUnit;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.command.SendCommandEvent;
+import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
 
 /**
  *
@@ -34,6 +41,27 @@ public class PlayerCommandListener {
                 
                 Sponge.getCommandManager().process((CommandSource) e.getSource(), "update");
             }
+        }
+        
+        
+        if(e.getSource() instanceof Player) {
+            Player p = (Player) e.getSource();
+            
+            if(!Ozone.getPermsApi().getUser(p.getName()).getPrimaryGroup().equalsIgnoreCase("admin")) {
+                if(e.getCommand().equalsIgnoreCase("inventory") || e.getCommand().equalsIgnoreCase("inv")) {
+                    if(e.getArguments().equalsIgnoreCase("get " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase())) {
+                        e.setCancelled(false);
+                    } else if(e.getArguments().equalsIgnoreCase("kit " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase())) {
+                        e.setCancelled(false);
+                    } else {
+                        e.setCancelled(true);
+                    }
+                    
+                    e.setResult(CommandResult.empty());
+                }
+            }
+        } else {
+            e.setCancelled(false);
         }
     }
     

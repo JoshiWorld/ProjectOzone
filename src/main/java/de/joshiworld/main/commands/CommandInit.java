@@ -18,6 +18,7 @@ import de.joshiworld.main.commands.spectate.SpectateCommand;
 import de.joshiworld.main.commands.tpw.TpwCommand;
 import de.joshiworld.main.commands.update.UpdateCommand;
 import de.joshiworld.main.commands.warp.BodenshopCommand;
+import de.joshiworld.main.commands.warp.BodenweltCommand;
 import de.joshiworld.main.commands.warp.DelwarpCommand;
 import de.joshiworld.main.commands.warp.SetwarpCommand;
 import de.joshiworld.main.commands.warp.SkyblockCommand;
@@ -61,6 +62,7 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), BodenshopCommand.build(), "bodenshop");
         getCommandManager().register(Ozone.getPlugin(), SkyshopCommand.build(), "skyshop");
         getCommandManager().register(Ozone.getPlugin(), SkyblockCommand.build(), "skyblock");
+        getCommandManager().register(Ozone.getPlugin(), BodenweltCommand.build(), "bodenwelt");
         getCommandManager().register(Ozone.getPlugin(), MuteCommand.build(), "mute");
         getCommandManager().register(Ozone.getPlugin(), ScoreCommand.build(), "score");
         getCommandManager().register(Ozone.getPlugin(), IslandCommand.build(), "island", "is");

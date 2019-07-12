@@ -32,6 +32,7 @@ public class ListenersInit {
         getEventManager().registerListeners(Ozone.getPlugin(), new ShopSignListener());
         getEventManager().registerListeners(Ozone.getPlugin(), new WarpCancelListener());
         getEventManager().registerListeners(Ozone.getPlugin(), new PlayerCommandListener());
+        getEventManager().registerListeners(Ozone.getPlugin(), new ChangeWorldListener());
     }
     
 }

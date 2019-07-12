@@ -28,7 +28,7 @@ public class TpwCommand implements CommandExecutor {
             
             PermissionData pd = Ozone.getPermsApi().getUser(p.getName()).getCachedData().getPermissionData(Ozone.getPermsApi().getContextManager().getApplicableContexts(p));
             
-            if(pd.getPermissionValue("projectozone.money").asBoolean()) {
+            if(pd.getPermissionValue("projectozone.tpw").asBoolean()) {
                 if(player.getName().equals(target.getName())) {
                     p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu kannst diesen Spieler nicht zu sich selbst teleportieren"));
                 } else {
