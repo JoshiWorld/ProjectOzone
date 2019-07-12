@@ -19,6 +19,8 @@ public class ChangeWorldListener {
         if(e.getTargetEntity() instanceof Player) {
             Player p = (Player) e.getTargetEntity();
             
+            String world = p.getWorld().getName();
+            
             Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
             //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
             //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete --confirm ");
@@ -26,10 +28,12 @@ public class ChangeWorldListener {
             Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
             
             Task.builder().execute(() -> {
-                if(p.getWorld().getName().equalsIgnoreCase("bodenwelt") || p.getWorld().getName().equalsIgnoreCase("skyblock")) {
-                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
-                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
-                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                if(!world.equalsIgnoreCase(p.getWorld().getName())) {
+                    if(p.getWorld().getName().equalsIgnoreCase("bodenwelt") || p.getWorld().getName().equalsIgnoreCase("skyblock")) {
+                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
+                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
+                        Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                    }
                 }
             }).delay(250, TimeUnit.MILLISECONDS).name(p.getName() + "_teleportWorld").submit(Ozone.getPlugin());
         }

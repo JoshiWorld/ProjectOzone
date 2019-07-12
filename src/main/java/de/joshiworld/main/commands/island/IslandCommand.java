@@ -24,17 +24,21 @@ public class IslandCommand implements CommandExecutor {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
-                Location loc = new Location(
-                        Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
-                        Players.loadPlayerNode(p.getName()).getNode("Island-Location", "x").getDouble(), 
-                        Players.loadPlayerNode(p.getName()).getNode("Island-Location", "y").getDouble(), 
-                        Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
-                
-                p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
-                p.setLocation(loc);
+            if(p.getWorld().getName().equalsIgnoreCase("skyblock")) {
+                if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
+                    Location loc = new Location(
+                            Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
+                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "x").getDouble(), 
+                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "y").getDouble(), 
+                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
+
+                    p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
+                    p.setLocation(loc);
+                } else {
+                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast noch keine Insel. Mache §e/island create §cum eine Insel zu erstellen"));
+                }
             } else {
-                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast noch keine Insel. Mache §e/island create §cum eine Insel zu erstellen"));
+                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu musst in der Skywelt sein! /skyblock"));
             }
         }
         return CommandResult.success();

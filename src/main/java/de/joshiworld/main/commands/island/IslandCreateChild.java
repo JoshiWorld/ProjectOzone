@@ -10,6 +10,10 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.property.SlotIndex;
+import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -23,21 +27,33 @@ public class IslandCreateChild implements CommandExecutor {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == false || Players.loadPlayerNode(p.getName()).getNode("Island").getValue() == null) {
-                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "botania-skyblock-spread " + p.getName() + " 10000");
-                
-                Players.cfgNode.getNode("Island").setValue(true);
-                
-                Players.cfgNode.getNode("Island-Location", "world").setValue(p.getWorld().getName());
-                Players.cfgNode.getNode("Island-Location", "x").setValue(p.getLocation().getX());
-                Players.cfgNode.getNode("Island-Location", "y").setValue(p.getLocation().getY());
-                Players.cfgNode.getNode("Island-Location", "z").setValue(p.getLocation().getZ());
-                
-                Players.save();
-                
-                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDeine Insel wurde erstellt"));
+            if(p.getWorld().getName().equalsIgnoreCase("skyblock")) {
+                if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == false || Players.loadPlayerNode(p.getName()).getNode("Island").getValue() == null) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "botania-skyblock-spread " + p.getName() + " 10000");
+
+                    Players.cfgNode.getNode("Island").setValue(true);
+
+                    Players.cfgNode.getNode("Island-Location", "world").setValue(p.getWorld().getName());
+                    Players.cfgNode.getNode("Island-Location", "x").setValue(p.getLocation().getX());
+                    Players.cfgNode.getNode("Island-Location", "y").setValue(p.getLocation().getY());
+                    Players.cfgNode.getNode("Island-Location", "z").setValue(p.getLocation().getZ());
+
+                    Players.save();
+                    
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
+                    
+                    p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "opencomputers:tool").get(), 1));
+                    p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "bqt:mpad").get(), 1));
+                    p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "everlastingabilities:ability_bottle").get(), 1));
+                    p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "botania:lexicon").get(), 1));
+
+                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDeine Insel wurde erstellt"));
+                } else {
+                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu besitzt bereits eine Insel"));
+                }
             } else {
-                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu besitzt bereits eine Insel"));
+                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu musst in der Skywelt sein! /skyblock"));
             }
         }
         return CommandResult.success();
