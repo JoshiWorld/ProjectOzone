@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.config.DefaultConfig;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.GameReloadEvent;
@@ -54,6 +55,7 @@ public class Ozone {
     public static Map<Player, Location> shopsign = new HashMap<>();
     public static Map<Player, Task> teleport = new HashMap<>();
     public static Map<String, Task> tpaTask = new HashMap<>();
+    public static Map<Entity, Location> backPort = new HashMap<>();
     
     
     

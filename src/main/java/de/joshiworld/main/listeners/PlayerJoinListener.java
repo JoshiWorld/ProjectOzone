@@ -13,11 +13,10 @@ import java.util.concurrent.TimeUnit;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundTypes;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.Team;
@@ -37,8 +36,6 @@ public class PlayerJoinListener {
     public void onJoin(ClientConnectionEvent.Join e) {
         if(e.getSource() instanceof Player) {
             Player p = (Player) e.getSource();
-            
-            p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "opencomputers:tool").get(), 1));
             
             if(Ozone.getPermsApi().getUser(p.getName()).getPrimaryGroup().equalsIgnoreCase("default")) {
                 Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + p.getName() + " parent set viewer1");
@@ -203,6 +200,21 @@ public class PlayerJoinListener {
                         });
                     }
                 }).delay(100, TimeUnit.MILLISECONDS).interval(1, TimeUnit.MINUTES).name("playtime").submit(Ozone.getPlugin());
+                
+                
+                
+                Task.builder().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
+                            if(all.getWorld().getName().equalsIgnoreCase("skyblock")) {
+                                if(!all.isOnGround() && all.getLocation().getY() < 50) {
+                                    all.setLocationSafely(Ozone.backPort.get((Entity) all));
+                                }
+                            }
+                        });
+                    }
+                }).delay(100, TimeUnit.MILLISECONDS).interval(200, TimeUnit.MILLISECONDS).name("skyPlayerLocCheck").submit(Ozone.getPlugin());
             }
             
             String prefixe = Config.getNode().getNode("Prefixe", Ozone.getPermsApi().getUser(p.getName()).getPrimaryGroup()).getString();
