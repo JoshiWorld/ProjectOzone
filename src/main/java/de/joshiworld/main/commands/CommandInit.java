@@ -3,14 +3,11 @@ package de.joshiworld.main.commands;
 import de.joshiworld.main.Ozone;
 import de.joshiworld.main.commands.config.ConfigCommand;
 import de.joshiworld.main.commands.hilfe.HilfeCommand;
-import de.joshiworld.main.commands.home.DelhomeCommand;
-import de.joshiworld.main.commands.home.HomeCommand;
-import de.joshiworld.main.commands.home.HomesCommand;
-import de.joshiworld.main.commands.home.SethomeCommand;
 import de.joshiworld.main.commands.island.IslandCommand;
 import de.joshiworld.main.commands.money.MoneyCommand;
 import de.joshiworld.main.commands.mute.MuteCommand;
 import de.joshiworld.main.commands.pay.PayCommand;
+import de.joshiworld.main.commands.permissions.SetPermsCommand;
 import de.joshiworld.main.commands.playtime.PlaytimeCommand;
 import de.joshiworld.main.commands.rank.RankCommand;
 import de.joshiworld.main.commands.score.ScoreCommand;
@@ -19,11 +16,13 @@ import de.joshiworld.main.commands.spectate.SpectateCommand;
 import de.joshiworld.main.commands.support.SupportCommand;
 import de.joshiworld.main.commands.tpw.TpwCommand;
 import de.joshiworld.main.commands.update.UpdateCommand;
+import de.joshiworld.main.commands.warp.BodennetherCommand;
 import de.joshiworld.main.commands.warp.BodenshopCommand;
 import de.joshiworld.main.commands.warp.BodenweltCommand;
 import de.joshiworld.main.commands.warp.DelwarpCommand;
 import de.joshiworld.main.commands.warp.SetwarpCommand;
 import de.joshiworld.main.commands.warp.SkyblockCommand;
+import de.joshiworld.main.commands.warp.SkynetherCommand;
 import de.joshiworld.main.commands.warp.SkyshopCommand;
 import de.joshiworld.main.commands.warp.WarpCommand;
 import de.joshiworld.main.commands.warp.WarpsCommand;
@@ -65,6 +64,8 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), SkyshopCommand.build(), "skyshop");
         getCommandManager().register(Ozone.getPlugin(), SkyblockCommand.build(), "skyblock");
         getCommandManager().register(Ozone.getPlugin(), BodenweltCommand.build(), "bodenwelt");
+        getCommandManager().register(Ozone.getPlugin(), BodennetherCommand.build(), "bodennether");
+        getCommandManager().register(Ozone.getPlugin(), SkynetherCommand.build(), "skynether");
         getCommandManager().register(Ozone.getPlugin(), MuteCommand.build(), "mute");
         getCommandManager().register(Ozone.getPlugin(), ScoreCommand.build(), "score");
         getCommandManager().register(Ozone.getPlugin(), IslandCommand.build(), "island", "is");
@@ -78,6 +79,7 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), SpectateCommand.build(), "spectate", "spec");
         getCommandManager().register(Ozone.getPlugin(), HilfeCommand.build(), "hilfe");
         getCommandManager().register(Ozone.getPlugin(), SupportCommand.build(), "support", "supp");
+        getCommandManager().register(Ozone.getPlugin(), SetPermsCommand.build(), "setperms");
     }
     
 }

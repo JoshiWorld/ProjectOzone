@@ -33,7 +33,7 @@ public class IslandCommand implements CommandExecutor {
                             Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
 
                     p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
-                    p.setLocation(loc);
+                    p.setLocationSafely(loc);
                 } else {
                     p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast noch keine Insel. Mache §e/island create §cum eine Insel zu erstellen"));
                 }

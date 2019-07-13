@@ -11,6 +11,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundTypes;
 import org.spongepowered.api.entity.Entity;
@@ -61,11 +63,6 @@ public class PlayerJoinListener {
                 if(Sponge.getServer().getWorld("Skyblock").isPresent()) {
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_SKYBLOCK");
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add Skyblock " + p.getName().toUpperCase() + "_SKYBLOCK");
-                }
-                
-                if(Sponge.getServer().getWorld("DIM-1").isPresent()) {
-                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_DIM-1");
-                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add DIM-1 " + p.getName().toUpperCase() + "_DIM-1");
                 }
             }
             
@@ -226,9 +223,10 @@ public class PlayerJoinListener {
                     @Override
                     public void run() {
                         Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
-                            if(all.health().get() < 10 && all.foodLevel().get() > 16) {
-                                double health = all.health().get();
-                                all.health().set(health + 0.5);
+                            if(all.health().get() < 20.0 && all.foodLevel().get() > 15) {
+                                HealthData health = all.getHealthData();
+                                health.set(Keys.HEALTH, health.health().get() + 1);
+                                all.offer(health);
                             }
                         });
                     }

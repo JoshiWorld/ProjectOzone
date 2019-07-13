@@ -22,7 +22,24 @@ public class ChangeWorldListener {
             String world = p.getWorld().getName();
             
             if(!e.getFromTransform().getExtent().getName().equals(e.getToTransform().getExtent().getName())) {
-                if(e.getFromTransform().getExtent().getName().equalsIgnoreCase("DIM-1")) {
+                if((!e.getFromTransform().getExtent().getName().equalsIgnoreCase("Nether") && !e.getToTransform().getExtent().getName().equalsIgnoreCase("skyblock")) ||
+                        (!e.getFromTransform().getExtent().getName().equalsIgnoreCase("skyblock") && !e.getToTransform().getExtent().getName().equalsIgnoreCase("Nether")) ||
+                        (!e.getFromTransform().getExtent().getName().equalsIgnoreCase("bodenwelt") && !e.getToTransform().getExtent().getName().equalsIgnoreCase("Bodennether")) ||
+                        (!e.getFromTransform().getExtent().getName().equalsIgnoreCase("Bodennether") && !e.getToTransform().getExtent().getName().equalsIgnoreCase("bodenwelt"))) {
+                    
+                    
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_" + e.getFromTransform().getExtent().getName().toUpperCase());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_" + e.getFromTransform().getExtent().getName().toUpperCase());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + e.getFromTransform().getExtent() + " " + p.getName().toUpperCase() + "_" + e.getFromTransform().getExtent().getName().toUpperCase());
+                    
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_" + e.getToTransform().getExtent().getName().toUpperCase());
+                }
+            }
+            
+            //<editor-fold defaultstate="collapsed" desc="old inv changer">
+            /*
+            if(!e.getFromTransform().getExtent().getName().equals(e.getToTransform().getExtent().getName())) {
+                if(e.getFromTransform().getExtent().getName().equalsIgnoreCase("Nether")) {
                     Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_SKYBLOCK");
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_SKYBLOCK");
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_SKYBLOCK");
@@ -52,7 +69,7 @@ public class ChangeWorldListener {
                 
                 
                 
-                if(e.getToTransform().getExtent().getName().equalsIgnoreCase("DIM-1")) {
+                if(e.getToTransform().getExtent().getName().equalsIgnoreCase("Nether")) {
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
                     Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_SKYBLOCK");
@@ -64,6 +81,8 @@ public class ChangeWorldListener {
                     Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_BODENWELT");
                 }
             }
+            */
+            //</editor-fold>
         }
     }
     

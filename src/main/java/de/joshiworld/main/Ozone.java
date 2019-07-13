@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.LuckPermsApi;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
@@ -26,6 +27,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
+import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
@@ -116,6 +118,19 @@ public class Ozone {
         ListenersInit.init();
         
         logger.info(prefix + " §awurde erfolgreich iniziiert");
+    }
+    
+    @Listener
+    public void onStart(GameStartedServerEvent e) {
+        /*
+        Task.builder().execute(() -> {
+            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "world load DIM-1");
+        }).delay(30, TimeUnit.SECONDS).name("DIM-1_LOAD").submit(plugin);
+        
+        Task.builder().execute(() -> {
+            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "world load DIM-1");
+        }).delay(10, TimeUnit.SECONDS).name("DIM-1_LOAD").submit(plugin);
+        */
     }
     
     //<editor-fold defaultstate="collapsed" desc="getPrefix">
