@@ -70,10 +70,10 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), IslandCommand.build(), "island", "is");
         getCommandManager().register(Ozone.getPlugin(), TpwCommand.build(), "tpw");
         getCommandManager().register(Ozone.getPlugin(), PlaytimeCommand.build(), "playtime", "spielzeit");
-        getCommandManager().register(Ozone.getPlugin(), SethomeCommand.build(), "sethome");
-        getCommandManager().register(Ozone.getPlugin(), HomeCommand.build(), "home");
-        getCommandManager().register(Ozone.getPlugin(), DelhomeCommand.build(), "delhome");
-        getCommandManager().register(Ozone.getPlugin(), HomesCommand.build(), "homes");
+        //getCommandManager().register(Ozone.getPlugin(), SethomeCommand.build(), "sethome");
+        //getCommandManager().register(Ozone.getPlugin(), HomeCommand.build(), "home");
+        //getCommandManager().register(Ozone.getPlugin(), DelhomeCommand.build(), "delhome");
+        //getCommandManager().register(Ozone.getPlugin(), HomesCommand.build(), "homes");
         getCommandManager().register(Ozone.getPlugin(), RankCommand.build(), "rank");
         getCommandManager().register(Ozone.getPlugin(), SpectateCommand.build(), "spectate", "spec");
         getCommandManager().register(Ozone.getPlugin(), HilfeCommand.build(), "hilfe");

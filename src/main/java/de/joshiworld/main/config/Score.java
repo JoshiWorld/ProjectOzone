@@ -93,8 +93,8 @@ public class Score {
         
         p.setScoreboard(board);
         
-        Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
-            Sponge.getServer().getOnlinePlayers().stream().forEach(sep -> {
+        for(Player all : Sponge.getServer().getOnlinePlayers()) {
+            for(Player sep : Sponge.getServer().getOnlinePlayers()) {
                 TabListEntry entry = all.getTabList().getEntry(sep.getUniqueId()).get();
 
                 String prefixeSep = Config.getNode().getNode("Prefixe", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
@@ -106,8 +106,8 @@ public class Score {
                 } else {
                     entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName()));
                 }
-            });
-        });
+            }
+        }
         
         //<editor-fold defaultstate="collapsed" desc="Ränge">
         /*

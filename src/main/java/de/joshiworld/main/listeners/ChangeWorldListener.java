@@ -7,7 +7,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.scheduler.Task;
-import org.spongepowered.api.text.Text;
 
 /**
  *
@@ -23,12 +22,24 @@ public class ChangeWorldListener {
             String world = p.getWorld().getName();
             
             if(!e.getFromTransform().getExtent().getName().equals(e.getToTransform().getExtent().getName())) {
-                Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
-                //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
-                //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete --confirm ");
-                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
-                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
-            
+                if(e.getFromTransform().getExtent().getName().equalsIgnoreCase("DIM-1")) {
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_SKYBLOCK");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_SKYBLOCK");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_SKYBLOCK");
+                } else if(e.getFromTransform().getExtent().getName().equalsIgnoreCase("Bodennether")) {
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_BODENWELT");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_BODENWELT");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_BODENWELT");
+                } else {
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory kit " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                    //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                    //Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory delete --confirm ");
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory create " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory add " + p.getWorld().getName() + " " + p.getName().toUpperCase() + "_" + p.getWorld().getName().toUpperCase());
+                }
+                
+                
+                
                 Task.builder().execute(() -> {
                     if(!world.equalsIgnoreCase(p.getWorld().getName())) {
                         if(p.getWorld().getName().equalsIgnoreCase("bodenwelt") || p.getWorld().getName().equalsIgnoreCase("skyblock")) {
@@ -38,13 +49,28 @@ public class ChangeWorldListener {
                         }
                     }
                 }).delay(250, TimeUnit.MILLISECONDS).name(p.getName() + "_teleportWorld").submit(Ozone.getPlugin());
+                
+                
+                
+                if(e.getToTransform().getExtent().getName().equalsIgnoreCase("DIM-1")) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_SKYBLOCK");
+                }
+                
+                if(e.getToTransform().getExtent().getName().equalsIgnoreCase("Bodennether")) {
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
+                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
+                    Sponge.getCommandManager().process(p.getCommandSource().get(), "inventory get " + p.getName().toUpperCase() + "_BODENWELT");
+                }
             }
         }
     }
     
     @Listener
     public void onLocCheck(MoveEntityEvent e) {
-        if(e.getTargetEntity().getWorld().getName().equalsIgnoreCase("skyblock")) {
+        if(e.getTargetEntity().getWorld().getName().equalsIgnoreCase("skyblock") || 
+                e.getTargetEntity().getWorld().getName().equalsIgnoreCase("world")) {
             if(e.getFromTransform().getExtent().getName().equals(e.getToTransform().getExtent().getName())) {
                 if(e.getTargetEntity() instanceof Player) {
                     if(e.getTargetEntity().isOnGround()) {

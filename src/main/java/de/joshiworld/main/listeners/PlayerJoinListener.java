@@ -15,6 +15,7 @@ import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.scheduler.Task;
@@ -207,14 +208,31 @@ public class PlayerJoinListener {
                     @Override
                     public void run() {
                         Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
-                            if(all.getWorld().getName().equalsIgnoreCase("skyblock")) {
+                            if(all.getWorld().getName().equalsIgnoreCase("skyblock") ||
+                                    all.getWorld().getName().equalsIgnoreCase("world")) {
                                 if(!all.isOnGround() && all.getLocation().getY() < 50) {
+                                    all.gameMode().set(GameModes.CREATIVE);
                                     all.setLocationSafely(Ozone.backPort.get((Entity) all));
+                                    all.gameMode().set(GameModes.SURVIVAL);
                                 }
                             }
                         });
                     }
                 }).delay(100, TimeUnit.MILLISECONDS).interval(200, TimeUnit.MILLISECONDS).name("skyPlayerLocCheck").submit(Ozone.getPlugin());
+                
+                
+                
+                Task.builder().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
+                            if(all.health().get() < 10 && all.foodLevel().get() > 16) {
+                                double health = all.health().get();
+                                all.health().set(health + 0.5);
+                            }
+                        });
+                    }
+                }).delay(100, TimeUnit.MILLISECONDS).interval(5, TimeUnit.SECONDS).name("playerHeal").submit(Ozone.getPlugin());
             }
             
             String prefixe = Config.getNode().getNode("Prefixe", Ozone.getPermsApi().getUser(p.getName()).getPrimaryGroup()).getString();
