@@ -2,7 +2,6 @@ package de.joshiworld.main.listeners;
 
 import java.util.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.property.block.MatterProperty;
 import org.spongepowered.api.data.property.block.MatterProperty.Matter;
 import org.spongepowered.api.event.Listener;
@@ -22,10 +21,10 @@ public class FluidBreakListener {
             if(snap.getLocation().get().getY() < 50) {
                 e.setCancelled(true);
                 
-                if(!snap.getLocation().get().add(0, 1, 0).getBlockType().equals(BlockTypes.WATER) || 
+                /*if(!snap.getLocation().get().add(0, 1, 0).getBlockType().equals(BlockTypes.WATER) || 
                     !snap.getLocation().get().add(0, 1, 0).getBlockType().equals(BlockTypes.LAVA)) {
                     snap.getLocation().get().removeBlock();
-                }
+                }*/
             }
         }
     }
