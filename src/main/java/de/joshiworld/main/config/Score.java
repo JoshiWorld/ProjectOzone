@@ -95,16 +95,23 @@ public class Score {
         
         for(Player all : Sponge.getServer().getOnlinePlayers()) {
             for(Player sep : Sponge.getServer().getOnlinePlayers()) {
-                TabListEntry entry = all.getTabList().getEntry(sep.getUniqueId()).get();
+                Optional<TabListEntry> entryOpt = all.getTabList().getEntry(sep.getUniqueId());
+                
+                if(entryOpt.isPresent()) {
+                    TabListEntry entry = entryOpt.get();
 
-                String prefixeSep = Config.getNode().getNode("Prefixe", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
-                String prefixSep = Config.getNode().getNode("Prefix", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
-                String suffixeSep = Config.getNode().getNode("Suffixe", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
+                    String prefixeSep = Config.getNode().getNode("Prefixe", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
+                    String prefixSep = Config.getNode().getNode("Prefix", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
+                    String suffixeSep = Config.getNode().getNode("Suffixe", Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup()).getString();
 
-                if(Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup().startsWith("viewer") || Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup().startsWith("sub")) {
-                    entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName() + " " + suffixeSep));
+                    if(Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup().startsWith("viewer") || Ozone.getPermsApi().getUser(sep.getName()).getPrimaryGroup().startsWith("sub")) {
+                        entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName() + " " + suffixeSep));
+                    } else {
+                        entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName()));
+                    }
                 } else {
-                    entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName()));
+                    all.sendMessage(Text.of(Ozone.getPrefix() + " Es scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
+                    sep.sendMessage(Text.of(Ozone.getPrefix() + " Es scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
                 }
             }
         }

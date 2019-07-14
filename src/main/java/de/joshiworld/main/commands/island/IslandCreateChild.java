@@ -9,12 +9,13 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.type.HandTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -46,7 +47,9 @@ public class IslandCreateChild implements CommandExecutor {
                     
                     //RepresentedItemData data = Sponge.getGame().getDataManager().getManipulatorBuilder(RepresentedItemData.class).get().create();
                     
-                    p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "opencomputers:tool").get(), 1));
+                    ItemStack book = ItemStack.of(Sponge.getRegistry().getType(ItemType.class, "opencomputers:tool").get(), 1);
+                    
+                    p.getInventory().offer(ItemStack.builder().fromContainer(book.toContainer().set(DataQuery.of("UnsafeDamage"), 4)).build());
                     p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "bqt:mpad").get(), 1));
                     p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "everlastingabilities:ability_bottle").get(), 1));
                     p.getInventory().offer(ItemStack.of(Sponge.getGame().getRegistry().getType(ItemType.class, "botania:lexicon").get(), 1));

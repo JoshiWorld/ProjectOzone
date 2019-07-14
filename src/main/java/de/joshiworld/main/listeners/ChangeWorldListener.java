@@ -3,7 +3,6 @@ package de.joshiworld.main.listeners;
 import de.joshiworld.main.Ozone;
 import java.util.concurrent.TimeUnit;
 import org.spongepowered.api.Sponge;
-import static org.spongepowered.api.command.args.GenericArguments.world;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
