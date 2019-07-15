@@ -24,7 +24,7 @@ public class IslandCommand implements CommandExecutor {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            if(p.getWorld().getName().equalsIgnoreCase("skyblock")) {
+            if(p.getWorld().getName().equalsIgnoreCase("skyblock") || p.getWorld().getName().equalsIgnoreCase("nether")) {
                 if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
                     Location loc = new Location(
                             Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 

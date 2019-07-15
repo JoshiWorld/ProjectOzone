@@ -1,6 +1,7 @@
 package de.joshiworld.main.commands;
 
 import de.joshiworld.main.Ozone;
+import de.joshiworld.main.commands.clearfluids.ClearfluidsCommand;
 import de.joshiworld.main.commands.config.ConfigCommand;
 import de.joshiworld.main.commands.hilfe.HilfeCommand;
 import de.joshiworld.main.commands.island.IslandCommand;
@@ -82,6 +83,7 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), SupportCommand.build(), "support", "supp");
         getCommandManager().register(Ozone.getPlugin(), SetPermsCommand.build(), "setperms");
         getCommandManager().register(Ozone.getPlugin(), PlayersCommand.build(), "players");
+        getCommandManager().register(Ozone.getPlugin(), ClearfluidsCommand.build(), "clearfluids");
     }
     
 }
