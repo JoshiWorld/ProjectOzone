@@ -10,12 +10,9 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.type.HandTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -44,8 +41,6 @@ public class IslandCreateChild implements CommandExecutor {
                     
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear " + p.getName());
                     Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "inventory clear --confirm");
-                    
-                    //RepresentedItemData data = Sponge.getGame().getDataManager().getManipulatorBuilder(RepresentedItemData.class).get().create();
                     
                     ItemStack book = ItemStack.of(Sponge.getRegistry().getType(ItemType.class, "opencomputers:tool").get(), 1);
                     
