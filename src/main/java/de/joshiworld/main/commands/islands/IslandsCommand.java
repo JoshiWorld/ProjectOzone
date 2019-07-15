@@ -1,4 +1,4 @@
-package de.joshiworld.main.commands.players;
+package de.joshiworld.main.commands.islands;
 
 import de.joshiworld.main.Ozone;
 import de.joshiworld.main.config.Players;
@@ -17,7 +17,7 @@ import org.spongepowered.api.text.Text;
  *
  * @author JoshiWorld
  */
-public class PlayersCommand implements CommandExecutor {
+public class IslandsCommand implements CommandExecutor {
 
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
@@ -47,7 +47,7 @@ public class PlayersCommand implements CommandExecutor {
     
     public static CommandSpec build() {
         return CommandSpec.builder()
-                .executor(new PlayersCommand())
+                .executor(new IslandsCommand())
                 .build();
     }
     
