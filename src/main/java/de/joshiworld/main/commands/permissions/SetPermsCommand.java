@@ -49,6 +49,9 @@ public class SetPermsCommand implements CommandExecutor {
         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission sub6 " + permission.toLowerCase() + " " + mode.toLowerCase());
         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission sub7 " + permission.toLowerCase() + " " + mode.toLowerCase());
         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission vip " + permission.toLowerCase() + " " + mode.toLowerCase());
+        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission supp " + permission.toLowerCase() + " " + mode.toLowerCase());
+        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission editor " + permission.toLowerCase() + " " + mode.toLowerCase());
+        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set_permission mod " + permission.toLowerCase() + " " + mode.toLowerCase());
         
         src.sendMessage(Text.of(Ozone.getPrefix() + " §aRanks set permission: §e" + permission.toLowerCase() + " §awith mode: §e" + mode.toLowerCase()));
         return CommandResult.success();

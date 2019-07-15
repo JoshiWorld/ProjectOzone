@@ -33,13 +33,15 @@ public class IslandTeleportChild implements CommandExecutor {
             if(pd.getPermissionValue("projectozone.island").asBoolean()) {
                 if(Players.playerExist(target) && Players.loadPlayerNode(target).getNode("Island").getBoolean() == true) {
                     Location loc = new Location(
-                            Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "x").getDouble(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "y").getDouble(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
+                            Sponge.getServer().getWorld(Players.loadPlayerNode(target).getNode("Island-Location", "world").getString()).get(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "x").getDouble(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "y").getDouble(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "z").getDouble());
                     
-                    p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
+                    p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(target).getNode("Island-Location", "world").getString()).get());
                     p.setLocationSafely(loc);
+                    
+                    p.sendMessage(Text.of(Ozone.getPrefix() + " §aIsland von: §e" + target));
                 } else {
                     p.sendMessage(Text.of(Ozone.getPrefix() + " §cDieser Spieler exestiert nicht oder besitzt keine Insel §i(Eingegebener Spieler: " + target + ")"));
                 }

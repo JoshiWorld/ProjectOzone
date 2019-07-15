@@ -34,6 +34,7 @@ public class PlayerQuitListener {
             
             Sponge.getScheduler().createTaskBuilder().execute(() -> {
                 Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
+                    all.getTabList().removeEntry(p.getUniqueId());
                     Score.setScore(all);
                 });
             }).delay(250, TimeUnit.MILLISECONDS).name(p.getName() + ":disconnect").submit(Ozone.getPlugin());
