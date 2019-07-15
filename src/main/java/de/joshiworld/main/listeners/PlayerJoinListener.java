@@ -88,52 +88,64 @@ public class PlayerJoinListener {
                             if(Ozone.getPermsApi().getUser(all.getName()).getPrimaryGroup().startsWith("viewer")) {
                                 switch(Players.loadPlayerNode(all.getName()).getNode("playtime", "hours").getInt()) {
                                     case 8:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer2");
-                                        Money.addMoney(all.getName(), 200);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e2"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer2");
+                                            Money.addMoney(all.getName(), 200);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e2"));
+                                        }
                                         break;
                                     case 18:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer3");
-                                        Money.addMoney(all.getName(), 300);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e3"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer3");
+                                            Money.addMoney(all.getName(), 300);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e3"));
+                                        }
                                         break;
                                     case 30:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer4");
-                                        Money.addMoney(all.getName(), 400);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e4"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer4");
+                                            Money.addMoney(all.getName(), 400);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e4"));
+                                        }
                                         break;
                                     case 50:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer5");
-                                        Money.addMoney(all.getName(), 500);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e5"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer5");
+                                            Money.addMoney(all.getName(), 500);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e5"));
+                                        }
                                         break;
                                     case 70:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer6");
-                                        Money.addMoney(all.getName(), 600);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e6"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer6");
+                                            Money.addMoney(all.getName(), 600);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e6"));
+                                        }
                                         break;
                                     case 80:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer7");
-                                        Money.addMoney(all.getName(), 700);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e7"));
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote viewer");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " viewer7");
+                                            Money.addMoney(all.getName(), 700);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Viewer Level §e7"));
+                                        }
                                         break;
                                     default:
                                         break;
@@ -145,53 +157,65 @@ public class PlayerJoinListener {
                             if(Ozone.getPermsApi().getUser(all.getName()).getPrimaryGroup().startsWith("sub")) {
                                 switch(Players.loadPlayerNode(all.getName()).getNode("playtime", "hours").getInt()) {
                                     case 8:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub2");
-                                        Money.addMoney(all.getName(), 400);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e2"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub2");
+                                            Money.addMoney(all.getName(), 400);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e2"));
+                                            break;
+                                        }
                                     case 18:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub3");
-                                        Money.addMoney(all.getName(), 600);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e3"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub3");
+                                            Money.addMoney(all.getName(), 600);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e3"));
+                                            break;
+                                        }
                                     case 30:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub4");
-                                        Money.addMoney(all.getName(), 800);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e4"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub4");
+                                            Money.addMoney(all.getName(), 800);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e4"));
+                                            break;
+                                        }
                                     case 50:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub5");
-                                        Money.addMoney(all.getName(), 1000);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e5"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub5");
+                                            Money.addMoney(all.getName(), 1000);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e5"));
+                                            break;
+                                        }
                                     case 70:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub6");
-                                        Money.addMoney(all.getName(), 1200);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e6"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub6");
+                                            Money.addMoney(all.getName(), 1200);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e6"));
+                                            break;
+                                        }
                                     case 80:
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub7");
-                                        Money.addMoney(all.getName(), 1400);
-                                        Score.setScore(all);
-                                        p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
-                                        p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e7"));
-                                        break;
+                                        if(Players.loadPlayerNode(all.getName()).getNode("playtime", "minuten").getInt() == 0) {
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "lp user " + all.getName() + " promote sub");
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "ranks set " + all.getName() + " sub7");
+                                            Money.addMoney(all.getName(), 1400);
+                                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "update");
+                                            p.playSound(SoundTypes.ENTITY_PLAYER_LEVELUP, SoundCategories.HOSTILE, p.getLocation().getPosition(), 1);
+                                            p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu bist jetzt Sub Level §e7"));
+                                            break;
+                                        }
                                     default:
                                         break;
                                 }

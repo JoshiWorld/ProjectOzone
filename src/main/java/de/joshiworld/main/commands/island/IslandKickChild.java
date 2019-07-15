@@ -31,7 +31,8 @@ public class IslandKickChild implements CommandExecutor {
             String target = (String) args.getOne(Text.of("player")).get();
             
             for(File member : Players.getPlayers()) {
-                if(Players.loadPlayerNode(member.getName()).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
+                if(Players.loadPlayerNode(member.getName()).getNode("MemberOf").getValue() != null && 
+                        Players.loadPlayerNode(member.getName()).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
                     members.add(member.getName().replaceAll(".conf", ""));
                 }
             }

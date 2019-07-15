@@ -28,7 +28,8 @@ public class IslandMembersChild implements CommandExecutor {
             for(File members : Players.getPlayers()) {
                 String target = members.getName().replaceAll(".conf", "");
 
-                if(Players.loadPlayerNode(target).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
+                if(Players.loadPlayerNode(target).getNode("MemberOf").getValue() != null && 
+                        Players.loadPlayerNode(target).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
                     msg = msg + "§e" + target + "§7, ";
                 }
             }

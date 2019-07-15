@@ -68,6 +68,7 @@ public class IslandCommand implements CommandExecutor {
                 .child(IslandKickChild.base(), "kick")
                 .child(IslandMembersChild.base(), "members")
                 .child(IslandHelpChild.base(), "help")
+                .child(IslandSetspawnChild.base(), "setspawn")
                 .executor(new IslandCommand())
                 .build();
     }
