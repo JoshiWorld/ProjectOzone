@@ -21,8 +21,7 @@ public class HilfeCommand implements CommandExecutor {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            p.sendMessage(Text.of("§a/is create §8Insel erstellen"));
-            p.sendMessage(Text.of("§a/is §8Zur Insel teleportieren"));
+            p.sendMessage(Text.of("§a/island help §8Island-Hilfe"));
             p.sendMessage(Text.of("§a/home <home> §8Zum Home"));
             p.sendMessage(Text.of("§a/sethome <home> §8Home setzen"));
             p.sendMessage(Text.of("§a/delhome <home> §8Home löschen"));

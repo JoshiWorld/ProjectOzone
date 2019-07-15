@@ -25,7 +25,7 @@ public class IslandCommand implements CommandExecutor {
             Player p = (Player) src;
             
             if(p.getWorld().getName().equalsIgnoreCase("skyblock") || p.getWorld().getName().equalsIgnoreCase("nether")) {
-                if(Players.loadPlayerNode(p.getName()).getNode("MemberOf") == null) {
+                if(Players.loadPlayerNode(p.getName()).getNode("MemberOf").getValue() == null) {
                     if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
                         Location loc = new Location(
                                 Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
@@ -67,6 +67,7 @@ public class IslandCommand implements CommandExecutor {
                 .child(IslandLeaveChild.base(), "leave")
                 .child(IslandKickChild.base(), "kick")
                 .child(IslandMembersChild.base(), "members")
+                .child(IslandHelpChild.base(), "help")
                 .executor(new IslandCommand())
                 .build();
     }

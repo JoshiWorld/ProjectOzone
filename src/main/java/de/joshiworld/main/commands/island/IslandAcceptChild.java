@@ -30,7 +30,7 @@ public class IslandAcceptChild implements CommandExecutor {
             
             Player target = (Player) args.getOne(Text.of("player")).get();
             
-            if(Players.loadPlayerNode(p.getName()).getNode("MemberOf") != null) {
+            if(Players.loadPlayerNode(p.getName()).getNode("MemberOf").getValue() != null) {
                 p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu bist bereits auf einer anderen Insel. Mache §o/island leave"));
             } else {
                 if(!Ozone.islandInvite.containsKey(target.getName() + "_" + p.getName())) {
