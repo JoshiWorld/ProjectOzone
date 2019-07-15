@@ -17,6 +17,8 @@ public class PlayerCommandListener {
     
     @Listener
     public void onPreCommand(SendCommandEvent e) {
+        System.out.println(e.getCommand() + " " + e.getArguments());
+        
         if(e.getCommand().equalsIgnoreCase("luckperms") || e.getCommand().equalsIgnoreCase("lp")) {
             if(e.getArguments().contains("user") && e.getArguments().contains("parent set")) {
                 Sponge.getServer().getOnlinePlayers().stream().forEach(all -> {
