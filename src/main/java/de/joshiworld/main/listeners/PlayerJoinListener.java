@@ -18,8 +18,10 @@ import org.spongepowered.api.effect.sound.SoundTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.Team;
@@ -253,6 +255,10 @@ public class PlayerJoinListener {
                     
                     entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName()));
                 });*/
+                
+                if(!all.getTabList().getEntry(p.getUniqueId()).isPresent()) {
+                    all.getTabList().addEntry(TabListEntry.builder().profile(GameProfile.of(p.getUniqueId())).build());
+                }
                 
                 Score.setScore(all);
             });

@@ -8,6 +8,7 @@ import de.joshiworld.main.commands.money.MoneyCommand;
 import de.joshiworld.main.commands.mute.MuteCommand;
 import de.joshiworld.main.commands.pay.PayCommand;
 import de.joshiworld.main.commands.permissions.SetPermsCommand;
+import de.joshiworld.main.commands.players.PlayersCommand;
 import de.joshiworld.main.commands.playtime.PlaytimeCommand;
 import de.joshiworld.main.commands.rank.RankCommand;
 import de.joshiworld.main.commands.score.ScoreCommand;
@@ -80,6 +81,7 @@ public class CommandInit {
         getCommandManager().register(Ozone.getPlugin(), HilfeCommand.build(), "hilfe");
         getCommandManager().register(Ozone.getPlugin(), SupportCommand.build(), "support", "supp");
         getCommandManager().register(Ozone.getPlugin(), SetPermsCommand.build(), "setperms");
+        getCommandManager().register(Ozone.getPlugin(), PlayersCommand.build(), "players");
     }
     
 }

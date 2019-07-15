@@ -1,5 +1,6 @@
 package de.joshiworld.main.config;
 
+import static de.joshiworld.main.config.Warps.folder;
 import java.io.File;
 import java.io.IOException;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
@@ -75,6 +76,10 @@ public class Players {
             ex.printStackTrace();
             return null;
         }
+    }
+    
+    public static File[] getPlayers() {
+        return folder.listFiles();
     }
     
 }
