@@ -1,9 +1,8 @@
-package de.joshiworld.main.commands.players;
+package de.joshiworld.main.commands.island;
 
 import de.joshiworld.main.Ozone;
 import de.joshiworld.main.config.Players;
 import java.io.File;
-import me.lucko.luckperms.api.caching.PermissionData;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -17,37 +16,37 @@ import org.spongepowered.api.text.Text;
  *
  * @author JoshiWorld
  */
-public class PlayersCommand implements CommandExecutor {
+public class IslandMembersChild implements CommandExecutor {
 
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            PermissionData pd = Ozone.getPermsApi().getUser(p.getName()).getCachedData().getPermissionData(Ozone.getPermsApi().getContextManager().getApplicableContexts(p));
+            String msg = "";
             
-            if(pd.getPermissionValue("projectozone.players").asBoolean()) {
-                String msg = "";
-            
-                for(File players : Players.getPlayers()) {
-                    String target = players.getName().replaceAll(".conf", "");
-                    
-                    if(Players.loadPlayerNode(target).getNode("Island").getBoolean() == true) {
-                        msg = msg + "§a" + target + "§7, ";
-                    }
-                }
+            for(File members : Players.getPlayers()) {
+                String target = members.getName().replaceAll(".conf", "");
 
+                if(Players.loadPlayerNode(target).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
+                    msg = msg + "§e" + target + "§7, ";
+                }
+            }
+            
+            if(!msg.isEmpty()) {
                 msg = msg.substring(0, msg.length() - 2);
 
-                p.sendMessage(Text.of(Ozone.getPrefix() + " " + msg));
+                p.sendMessage(Text.of(Ozone.getPrefix() + " §aMembers: " + msg));
+            } else {
+                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu besitzt keine Member"));
             }
         }
         return CommandResult.success();
     }
     
-    public static CommandSpec build() {
+    public static CommandSpec base() {
         return CommandSpec.builder()
-                .executor(new PlayersCommand())
+                .executor(new IslandMembersChild())
                 .build();
     }
     

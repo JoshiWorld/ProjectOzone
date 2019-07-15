@@ -43,7 +43,7 @@ public class IslandTeleportChild implements CommandExecutor {
                     
                     p.sendMessage(Text.of(Ozone.getPrefix() + " §aIsland von: §e" + target));
                 } else {
-                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDieser Spieler exestiert nicht oder besitzt keine Insel §i(Eingegebener Spieler: " + target + ")"));
+                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDieser Spieler exestiert nicht oder besitzt keine Insel §o(Eingegebener Spieler: " + target + ")"));
                 }
             }
         }

@@ -25,17 +25,30 @@ public class IslandCommand implements CommandExecutor {
             Player p = (Player) src;
             
             if(p.getWorld().getName().equalsIgnoreCase("skyblock") || p.getWorld().getName().equalsIgnoreCase("nether")) {
-                if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
-                    Location loc = new Location(
-                            Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "x").getDouble(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "y").getDouble(), 
-                            Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
+                if(Players.loadPlayerNode(p.getName()).getNode("MemberOf") == null) {
+                    if(Players.loadPlayerNode(p.getName()).getNode("Island").getBoolean() == true) {
+                        Location loc = new Location(
+                                Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get(), 
+                                Players.loadPlayerNode(p.getName()).getNode("Island-Location", "x").getDouble(), 
+                                Players.loadPlayerNode(p.getName()).getNode("Island-Location", "y").getDouble(), 
+                                Players.loadPlayerNode(p.getName()).getNode("Island-Location", "z").getDouble());
 
-                    p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
-                    p.setLocationSafely(loc);
+                        p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(p.getName()).getNode("Island-Location", "world").getString()).get());
+                        p.setLocationSafely(loc);
+                    } else {
+                        p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast noch keine Insel. Mache §e/island create §cum eine Insel zu erstellen"));
+                    }
                 } else {
-                    p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast noch keine Insel. Mache §e/island create §cum eine Insel zu erstellen"));
+                    String target = Players.loadPlayerNode(p.getName()).getNode("MemberOf").getString();
+                    
+                    Location loc = new Location(
+                            Sponge.getServer().getWorld(Players.loadPlayerNode(target).getNode("Island-Location", "world").getString()).get(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "x").getDouble(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "y").getDouble(), 
+                            Players.loadPlayerNode(target).getNode("Island-Location", "z").getDouble());
+
+                    p.transferToWorld(Sponge.getServer().getWorld(Players.loadPlayerNode(target).getNode("Island-Location", "world").getString()).get());
+                    p.setLocationSafely(loc);
                 }
             } else {
                 p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu musst in der Skywelt sein! /skyblock"));
@@ -48,6 +61,12 @@ public class IslandCommand implements CommandExecutor {
         return CommandSpec.builder()
                 .child(IslandCreateChild.base(), "create")
                 .child(IslandTeleportChild.base(), "teleport")
+                .child(IslandInviteChild.base(), "invite")
+                .child(IslandAcceptChild.base(), "accept")
+                .child(IslandDenyChild.base(), "deny")
+                .child(IslandLeaveChild.base(), "leave")
+                .child(IslandKickChild.base(), "kick")
+                .child(IslandMembersChild.base(), "members")
                 .executor(new IslandCommand())
                 .build();
     }

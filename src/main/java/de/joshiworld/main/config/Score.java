@@ -110,8 +110,8 @@ public class Score {
                         entry.setDisplayName(TextSerializers.FORMATTING_CODE.deserialize(prefixeSep + " " + prefixSep + sep.getName()));
                     }
                 } else {
-                    all.sendMessage(Text.of(Ozone.getPrefix() + " §cEs scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
-                    sep.sendMessage(Text.of(Ozone.getPrefix() + " §cEs scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
+                    //all.sendMessage(Text.of(Ozone.getPrefix() + " §cEs scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
+                    //sep.sendMessage(Text.of(Ozone.getPrefix() + " §cEs scheint, du hast einen Fehler mit deiner Tablist. Bitte reconnecte, um das Problem zu beheben"));
                 }
             }
         }
