@@ -28,16 +28,20 @@ public class IslandKickChild implements CommandExecutor {
         if(src instanceof Player) {
             Player p = (Player) src;
             
-            String target = (String) args.getOne(Text.of("player")).get();
-            
             for(File member : Players.getPlayers()) {
-                if(Players.loadPlayerNode(member.getName()).getNode("MemberOf").getValue() != null && 
-                        Players.loadPlayerNode(member.getName()).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
-                    members.add(member.getName().replaceAll(".conf", ""));
+                String target = member.getName().replaceAll(".conf", "");
+
+                if(Players.loadPlayerNode(target).getNode("MemberOf").getValue() != null && 
+                        Players.loadPlayerNode(target).getNode("MemberOf").getString().equalsIgnoreCase(p.getName())) {
+                    members.add(target);
                 }
             }
             
-            if(!members.contains(target)) {
+            String target = (String) args.getOne(Text.of("player")).get();
+            
+            if(members.isEmpty()) {
+                p.sendMessage(Text.of(Ozone.getPrefix() + " §cDu hast keine Member, die du kicken kannst"));
+            } else if(!members.contains(target)) {
                 p.sendMessage(Text.of(Ozone.getPrefix() + " §cDieser Spieler befindet sich nicht auf deiner Insel. Mache §e§o/island members §cum deine Mitglieder zu sehen"));
             } else {
                 Players.loadPlayerNode(target).getNode("MemberOf").setValue(null);
@@ -48,6 +52,7 @@ public class IslandKickChild implements CommandExecutor {
                 });
                 
                 p.sendMessage(Text.of(Ozone.getPrefix() + " §aDu hast §e" + target + " §cgekickt"));
+                members.clear();
             }
         }
         return CommandResult.success();
